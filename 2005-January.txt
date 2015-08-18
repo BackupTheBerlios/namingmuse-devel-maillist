@@ -1,0 +1,331 @@
+From emh at hvidevold.cjb.net  Tue Jan 11 17:22:24 2005
+From: emh at hvidevold.cjb.net (Eivind Magnus Hvidevold)
+Date: Tue, 11 Jan 2005 17:22:24 +0100
+Subject: [Namingmuse-devel] python-taglib 1.3.3
+Message-ID: <20050111162224.GA27824@wallach-ix>
+
+python-taglib-1.3.3 has been updated for swig-1.3.24. It was only a
+missing '%include wchar.i'. Please report success or failure to
+namingmuse mailing list if you decide to test it on debian.
+
+-- 
+EMH
+
+
+From emh at hvidevold.cjb.net  Wed Jan 26 21:33:36 2005
+From: emh at hvidevold.cjb.net (Eivind Magnus Hvidevold)
+Date: Wed, 26 Jan 2005 21:33:36 +0100
+Subject: [Namingmuse-devel] [magnus.bjorklof@hut.fi: Namingmuse]
+Message-ID: <20050126203335.GA19997@wallach-ix>
+
+----- Forwarded message from Magnus Bj?rkl?f <magnus.bjorklof at hut.fi> -----
+
+To: emh at hvidevold.cjb.net
+Subject: Namingmuse
+Date: Wed, 26 Jan 2005 22:11:29 +0200 (EET)
+From: Magnus Bj?rkl?f <magnus.bjorklof at hut.fi>
+User-Agent: HUT webmail, IMP 2.2.6
+X-Authenticated-Sender: mbjorklo at cc.hut.fi
+X-Originating-IP: 84.230.90.111
+X-Spam-Checker-Version: SpamAssassin 2.64 (2004-01-11) on putosiko.hut.fi
+X-TKK-Virus-Scanned: by amavisd-new-2.1.2-hutcc at putosiko.hut.fi
+
+Hi,
+
+I tried your Namingmuse software. It really seems to be what I need since I've
+got 125 GB of mp3s that need to have the right tags and need to be organized
+according to Artists and Genre. Only bad thing is I can't really get it to work.
+
+I have installed the following packages:
+namingmuse-0.9.0-1emh.noarch.rpm
+python-taglib-1.3.2-1emh.i686.rpm
+taglib-1.3-1mdk.i586.rpm
+
+
+Here's one thing that doesn't work:
+
+$ nmuse -d --dry-run .
+TagLib: ID3v2.4 no longer supports the frame type TSIZ.  It will be discarded
+from the tag.
+TagLib: MPEG::Header::parse() -- Invalid sample rate.
+TagLib: MPEG::Header::parse() -- Invalid sample rate.
+TagLib: MPEG::Header::parse() -- Invalid sample rate.
+TagLib: MPEG::Header::parse() -- Invalid sample rate.
+CDDBP Exception: -1 timed out waiting for reply, send: cddb query 457b1881 129
+150 17850 42225 59100 77475 89400 106050 125850 144675 164625 183750
+205950226200 238350 257700 272850 291075 315375 331800 345375 364050 378225
+396825 413625 433500 456750 495525 514275 540375 558300 574125 588825 606975
+622200 640950 668625 684375 699375 717525 736125 759675 780150 797625 813075
+838275 853800 871425 890550 906825 923700 941550 959775 981525 1005600 1026075
+1043550 1058625 1076325 1102425 1119150 1133250 1150575 1167375 1187325 1206000
+1227975 1246350 1262100 1276125 1290300 1306725 1323600 1351050 1367100 1381125
+1395900 1416675 1438650 1453575 1472100 1488600 1506750 1529175 1545375 1562925
+1582650 1602825 1620900 1637175 1657575 1671825 1694100 1710825 1728075 1744650
+1758525 1773525 1788750 1809000 1822575 1841325 1863000 1882125 1900350 1919625
+1935000 1953225 1970325 1994550 2012100 2030550 2049900 2065725 20844002104875
+2122350 2141850 2163300 2182875 2197575 2211975 2228850 2248350 2266425 2283825
+2301675 2314200 2331450 2351475 31512
+term: '
+'
+data:
+
+
+
+
+How should I specify how I would like the files to look like when using the -n
+option?
+
+Thanks for your help,
+
+-Magnus
+
+
+
+
+----- End forwarded message -----
+
+-- 
+EMH
+
+
+From emh at hvidevold.cjb.net  Wed Jan 26 22:01:59 2005
+From: emh at hvidevold.cjb.net (Eivind Magnus Hvidevold)
+Date: Wed, 26 Jan 2005 22:01:59 +0100
+Subject: [Namingmuse-devel] Re: Namingmuse
+In-Reply-To: <1106770289.41f7f97132d35@webmail1.hut.fi>
+References: <1106770289.41f7f97132d35@webmail1.hut.fi>
+Message-ID: <20050126210159.GB19997@wallach-ix>
+
+On Wed, Jan 26, 2005 at 10:11:29PM +0200, Magnus Bj?rkl?f wrote:
+> Hi,
+> 
+> I tried your Namingmuse software. It really seems to be what I need since I've
+> got 125 GB of mp3s that need to have the right tags and need to be organized
+> according to Artists and Genre. Only bad thing is I can't really get it to work.
+> 
+> I have installed the following packages:
+> namingmuse-0.9.0-1emh.noarch.rpm
+> python-taglib-1.3.2-1emh.i686.rpm
+> taglib-1.3-1mdk.i586.rpm
+> 
+> 
+> Here's one thing that doesn't work:
+> 
+> $ nmuse -d --dry-run .
+> TagLib: ID3v2.4 no longer supports the frame type TSIZ.  It will be discarded
+> from the tag.
+> TagLib: MPEG::Header::parse() -- Invalid sample rate.
+> TagLib: MPEG::Header::parse() -- Invalid sample rate.
+> TagLib: MPEG::Header::parse() -- Invalid sample rate.
+> TagLib: MPEG::Header::parse() -- Invalid sample rate.
+> CDDBP Exception: -1 timed out waiting for reply, send: cddb query 457b1881 129
+> 150 17850 42225 59100 77475 89400 106050 125850 144675 164625 183750
+> 205950226200 238350 257700 272850 291075 315375 331800 345375 364050 378225
+> 396825 413625 433500 456750 495525 514275 540375 558300 574125 588825 606975
+> 622200 640950 668625 684375 699375 717525 736125 759675 780150 797625 813075
+> 838275 853800 871425 890550 906825 923700 941550 959775 981525 1005600 1026075
+> 1043550 1058625 1076325 1102425 1119150 1133250 1150575 1167375 1187325 1206000
+> 1227975 1246350 1262100 1276125 1290300 1306725 1323600 1351050 1367100 1381125
+> 1395900 1416675 1438650 1453575 1472100 1488600 1506750 1529175 1545375 1562925
+> 1582650 1602825 1620900 1637175 1657575 1671825 1694100 1710825 1728075 1744650
+> 1758525 1773525 1788750 1809000 1822575 1841325 1863000 1882125 1900350 1919625
+> 1935000 1953225 1970325 1994550 2012100 2030550 2049900 2065725 20844002104875
+> 2122350 2141850 2163300 2182875 2197575 2211975 2228850 2248350 2266425 2283825
+> 2301675 2314200 2331450 2351475 31512
+> term: '
+> '
+> data:
+Nmuse is an album oriented tagger. It assumes that the music files are
+already organized by one album per directory. It seems you are trying to
+run it on a directory with 129 files.. That doesn't sound like a normal
+album to me. Probably why the cddb lookup chokes.. I guess we should
+emit an intelligible error message if run on a folder that doesn't
+appear to be an album (perhaps check for play time > max CD playtime).
+
+> How should I specify how I would like the files to look like when using the -n
+> option?
+I'm sorry, it has not been made configurable yet (You would have to edit
+the regular expressions in namingmuse/namefix.py). The namefix option is
+mainly for fixing capitalization, removing garbage characters etc.. It
+doesn't try to guess about artist, album, year etc; it just treats the
+filename as a string. It's meant as a "quick fix" to improve the names
+in the absence of proper metainformation from an online database.
+
+On the other hand, if you want to configure the filename format when you
+get information from freedb, then have a look at namingmuse/policy.py:
+You can put a file in ~/.namingmuse/namingpolicy.py that redefines the
+filename generator functions from policy.py.
+
+-- 
+EMH
+
+
+From emh at hvidevold.cjb.net  Wed Jan 26 22:52:36 2005
+From: emh at hvidevold.cjb.net (Eivind Magnus Hvidevold)
+Date: Wed, 26 Jan 2005 22:52:36 +0100
+Subject: [Namingmuse-devel] [magnus.bjorklof@hut.fi: Re: Namingmuse]
+Message-ID: <20050126215236.GA24126@wallach-ix>
+
+----- Forwarded message from Magnus Bj?rkl?f <magnus.bjorklof at hut.fi> -----
+
+To: emh at hvidevold.cjb.net
+Subject: Re: Namingmuse
+Date: Wed, 26 Jan 2005 23:35:11 +0200 (EET)
+From: Magnus Bj?rkl?f <magnus.bjorklof at hut.fi>
+In-Reply-To: <20050126210159.GB19997 at wallach-ix>
+User-Agent: HUT webmail, IMP 2.2.6
+X-Authenticated-Sender: mbjorklo at cc.hut.fi
+X-Originating-IP: 84.230.90.111
+X-Spam-Checker-Version: SpamAssassin 2.64 (2004-01-11) on katosiko.hut.fi
+X-TKK-Virus-Scanned: by amavisd-new-2.1.2-hutcc at katosiko.hut.fi
+
+On Wed, 26 Jan 2005 22:01:59 +0100 Eivind Magnus Hvidevold
+<emh at hvidevold.cjb.net> wrote:
+
+> 
+> On Wed, Jan 26, 2005 at 10:11:29PM +0200, Magnus Bj?rkl?f wrote:
+> > Hi,
+> > 
+> > I tried your Namingmuse software. It really seems to be what I need
+> since I've
+> > got 125 GB of mp3s that need to have the right tags and need to be
+> organized
+> > according to Artists and Genre. Only bad thing is I can't really get
+> it to work.
+> > 
+> > I have installed the following packages:
+> > namingmuse-0.9.0-1emh.noarch.rpm
+> > python-taglib-1.3.2-1emh.i686.rpm
+> > taglib-1.3-1mdk.i586.rpm
+> > 
+> > 
+> > Here's one thing that doesn't work:
+> > 
+> > $ nmuse -d --dry-run .
+> > TagLib: ID3v2.4 no longer supports the frame type TSIZ.  It will be
+> discarded
+> > from the tag.
+> > TagLib: MPEG::Header::parse() -- Invalid sample rate.
+> > TagLib: MPEG::Header::parse() -- Invalid sample rate.
+> > TagLib: MPEG::Header::parse() -- Invalid sample rate.
+> > TagLib: MPEG::Header::parse() -- Invalid sample rate.
+> > CDDBP Exception: -1 timed out waiting for reply, send: cddb query
+> 457b1881 129
+> > 150 17850 42225 59100 77475 89400 106050 125850 144675 164625 183750
+> > 205950226200 238350 257700 272850 291075 315375 331800 345375 364050
+> 378225
+> > 396825 413625 433500 456750 495525 514275 540375 558300 574125 588825
+> 606975
+> > 622200 640950 668625 684375 699375 717525 736125 759675 780150 797625
+> 813075
+> > 838275 853800 871425 890550 906825 923700 941550 959775 981525
+> 1005600 1026075
+> > 1043550 1058625 1076325 1102425 1119150 1133250 1150575 1167375
+> 1187325 1206000
+> > 1227975 1246350 1262100 1276125 1290300 1306725 1323600 1351050
+> 1367100 1381125
+> > 1395900 1416675 1438650 1453575 1472100 1488600 1506750 1529175
+> 1545375 1562925
+> > 1582650 1602825 1620900 1637175 1657575 1671825 1694100 1710825
+> 1728075 1744650
+> > 1758525 1773525 1788750 1809000 1822575 1841325 1863000 1882125
+> 1900350 1919625
+> > 1935000 1953225 1970325 1994550 2012100 2030550 2049900 2065725
+> 20844002104875
+> > 2122350 2141850 2163300 2182875 2197575 2211975 2228850 2248350
+> 2266425 2283825
+> > 2301675 2314200 2331450 2351475 31512
+> > term: '
+> > '
+> > data:
+> Nmuse is an album oriented tagger. It assumes that the music files are
+> already organized by one album per directory. It seems you are trying
+> to
+> run it on a directory with 129 files.. That doesn't sound like a normal
+> album to me. Probably why the cddb lookup chokes.. I guess we should
+> emit an intelligible error message if run on a folder that doesn't
+> appear to be an album (perhaps check for play time > max CD playtime).
+> 
+> > How should I specify how I would like the files to look like when
+> using the -n
+> > option?
+> I'm sorry, it has not been made configurable yet (You would have to
+> edit
+> the regular expressions in namingmuse/namefix.py). The namefix option
+> is
+> mainly for fixing capitalization, removing garbage characters etc.. It
+> doesn't try to guess about artist, album, year etc; it just treats the
+> filename as a string. It's meant as a "quick fix" to improve the names
+> in the absence of proper metainformation from an online database.
+> 
+> On the other hand, if you want to configure the filename format when
+> you
+> get information from freedb, then have a look at namingmuse/policy.py:
+> You can put a file in ~/.namingmuse/namingpolicy.py that redefines the
+> filename generator functions from policy.py.
+> 
+> -- 
+> EMH
+
+
+OK, so I was mainly looking for some script that would use some intelligent way
+of creating filennames for mp3:s. Some of my mp3s are sorted according to
+Artists and those should be renamed so maybe nmuse will work there but mostly
+when I get new files they are not sorted and I'd like a script that would rename
+and sort them for me. But this is not at all what you are planning to implement,
+or? I could try to implement something like that (if I can find some time) and
+add it to your software but if that's not at all what your software is ment for
+then I should maybe try some other script. Haven't found any good script that
+would do this. Do you know any?
+
+-Magnus
+
+
+
+
+----- End forwarded message -----
+
+-- 
+EMH
+
+
+From emh at hvidevold.cjb.net  Wed Jan 26 23:14:07 2005
+From: emh at hvidevold.cjb.net (Eivind Magnus Hvidevold)
+Date: Wed, 26 Jan 2005 23:14:07 +0100
+Subject: [Namingmuse-devel] Re: Namingmuse
+In-Reply-To: <1106775311.41f80d0f678f1@webmail1.hut.fi>
+References: <1106770289.41f7f97132d35@webmail1.hut.fi>
+ <20050126210159.GB19997@wallach-ix> <1106775311.41f80d0f678f1@webmail1.hut.fi>
+Message-ID: <20050126221407.GB24126@wallach-ix>
+
+On Wed, Jan 26, 2005 at 11:35:11PM +0200, Magnus Bj?rkl?f wrote:
+> OK, so I was mainly looking for some script that would use some intelligent way
+> of creating filennames for mp3:s. Some of my mp3s are sorted according to
+> Artists and those should be renamed so maybe nmuse will work there but mostly
+> when I get new files they are not sorted and I'd like a script that would rename
+> and sort them for me. But this is not at all what you are planning to implement,
+> or? I could try to implement something like that (if I can find some time) and
+> add it to your software but if that's not at all what your software is ment for
+> then I should maybe try some other script. Haven't found any good script that
+> would do this. Do you know any?
+
+Well, the CVS version of namingmuse does have a '--local' option, which
+renames files according to the tags and policy. That's what you want if
+you already have reasonably good tags for your MP3s, but bad filenames.
+
+I'm planning at some point to implement a filename guessing module that sets
+album/artist/... in the tag from the filename, but I don't know when. I
+have some architectural worries to take care of first. If you want to do
+this then put the module in providers/filenameguess.py and make an
+AlbumInfo subclass.
+
+There are many projects out there that do local renaming/tagging
+already, but with varying degree of support for file formats other than
+mp3 and charsets other than ASCII. You could search http://freshmeat.net
+for 'mp3 rename' and see if you find any projects that currently fit
+your needs better.
+
+-- 
+EMH
+
+

@@ -1,0 +1,660 @@
+From emh at hvidevold.cjb.net  Tue Dec 14 19:12:28 2004
+From: emh at hvidevold.cjb.net (Eivind Magnus Hvidevold)
+Date: Tue, 14 Dec 2004 19:12:28 +0100
+Subject: [Namingmuse-devel] Re: namingmuse search bugs
+In-Reply-To: <m3wtvkx2ze.fsf@naru.home>
+References: <m3wtvkx2ze.fsf@naru.home>
+Message-ID: <20041214175318.GB11975@wallach-ix>
+
+On Tue, Dec 14, 2004 at 05:24:05PM +0100, Joakim Verona wrote:
+> Hello,
+> 
+> There appears to be several bugs in the namingmuse freetext search
+> stuff.
+> 
+> - the filterBysongCount function fails because it gets the local
+>   number of tracks wrong by one(at least for me)
+It's been working fine for me, except for CDs that contained a data
+track (which obviously has not been ripped to an audio file). If that is
+not the case for your album, I need more info on it to figure out what's
+wrong. We can add an option to disable filterBySongCount until we figure
+out what's the deal. The function is very helpful for weeding out a lot
+of unwanted matches (when it's working correctly).
+
+> So i just commented out this, and found other bugs:
+> 
+> - this field should be in the query:             ("allfields", "NO"),
+> 
+> -              ("words", " ".join(searchwords)), 
+> space rathern than plus.
+True. It seems urlencode does the job of replacing space with plus.
+Fixed in cvs now.
+ 
+> still, with the above changes, some tracks are mysteriously dropped by
+> the parser.
+> 
+> try for instance this query:
+> 
+> http://www.freedb.org/freedb_search.php?words=30+minutes+death&allfields=NO&fields=artist&fields=title&allcats=YES&grouping=none
+> 
+> and have a look at what searchfreedb.py returns for the same query.
+> 
+> at least for me it drops 2 entries, for some reason.
+Try giving the flag --loose. Namingmuse is strict by default. The 2
+entries are dropped because they are missing year and/or genre. We
+should output a warning to say this and how many albums were
+invalidated.
+
+We now have a mailing list: namingmuse-devel at lists.berlios.de
+
+-- 
+EMH
+
+
+From emh at hvidevold.cjb.net  Tue Dec 14 19:18:23 2004
+From: emh at hvidevold.cjb.net (Eivind Magnus Hvidevold)
+Date: Tue, 14 Dec 2004 19:18:23 +0100
+Subject: [Namingmuse-devel] [Joakim Verona: namingmuse feedback]
+Message-ID: <20041214181822.GA14711@wallach-ix>
+
+----- Forwarded message from Joakim Verona <joakim at verona.se> -----
+
+From: Joakim Verona <joakim at verona.se>
+To: emh at hvidevold.cjb.net
+Subject: namingmuse feedback
+Date: Fri, 10 Dec 2004 09:52:12 +0100
+User-Agent: Gnus/5.110003 (No Gnus v0.3) Emacs/21.3.50 (gnu/linux)
+
+Hello,
+
+I'm trying out namingmuse right now, and it seems very cool!
+
+I've been writing a tool like this myself, but it seems I can happily
+scrap it now.
+
+Some questions:
+
+- how do i enable fetching of covverart?
+
+- it would be nice if you enabled more "hooks" like the
+namingpolicy.py one(btw, there is a documentation bug - the local
+namingpolicy.py file is sometimes refered to as namingmusepolicy.py)
+
+Specifically I want some "post process" hook. In my case I would hook
+in a function that would 1) write an xml file with meta info like
+track names and freedb id 2) perform some sanity checks on the mp3s,
+and confirm that they arent garbage.
+
+- when namingmuse doesnt find a freedb match, it should be possible to
+  enter the id manually
+
+- sometimes the mp3 dirs have confused naming, and doesnt sort, which
+  means discid algorithms will fail. In those rare cases, it would be
+  nice to be able to enter the sequence manually. (ok it might be
+  simpler to just edit the names with an dir editor)
+
+I would be happy to work on these features, as time permits, if you want some help.
+
+Cheers,
+
+-- 
+Joakim Verona
+
+www.verona.se
+joakim at verona.se
+
+
+
+
+----- End forwarded message -----
+
+-- 
+EMH
+
+
+From emh at hvidevold.cjb.net  Tue Dec 14 19:20:38 2004
+From: emh at hvidevold.cjb.net (Eivind Magnus Hvidevold)
+Date: Tue, 14 Dec 2004 19:20:38 +0100
+Subject: [Namingmuse-devel] [joakim@verona.se: prblems with namingmnuse]
+Message-ID: <20041214182038.GA15177@wallach-ix>
+
+----- Forwarded message from Joakim Verona <joakim at verona.se> -----
+
+From: Joakim Verona <joakim at verona.se>
+To: emh at hvidevold.cjb.net
+Subject: prblems with namingmnuse
+Date: Fri, 10 Dec 2004 10:52:39 +0100
+User-Agent: Gnus/5.110003 (No Gnus v0.3) Emacs/21.3.50 (gnu/linux)
+
+Hello again,
+
+When I attempted a real run of namingmuse I run into some problems.
+
+in albumtag.py line 354 that looks like this:
+
+            id1tag = fileref.ID3v1Tag(False)
+
+idtag winds up as of type "str" not of Tag.
+
+This breaks the program. 
+
+Any hints to repair it? I had a quickl look in cvs, but this line
+looks the same.
+
+I run the released packages of python-taglib and namingmnuse:
+
+namingmuse-0.9.0  python-taglib-1.3.2
+
+however, my taglib-devel pkg is only v 1.3.1. Cant this be a problem?
+
+Your link to taglib is broken, this seems to be the right one:
+http://developer.kde.org/~wheeler/taglib.html
+
+there is no 1.3.2 there. Maybe the version numbers doesnt necesarily
+match up?
+
+
+Cheers, 
+
+-- 
+Joakim Verona
+
+www.verona.se
+joakim at verona.se
+
+
+
+
+----- End forwarded message -----
+
+-- 
+EMH
+
+
+From emh at hvidevold.cjb.net  Tue Dec 14 19:21:19 2004
+From: emh at hvidevold.cjb.net (Eivind Magnus Hvidevold)
+Date: Tue, 14 Dec 2004 19:21:19 +0100
+Subject: [Namingmuse-devel] [joakim@verona.se: Re: prblems with namingmnuse]
+Message-ID: <20041214182119.GB15177@wallach-ix>
+
+----- Forwarded message from Joakim Verona <joakim at verona.se> -----
+
+From: Joakim Verona <joakim at verona.se>
+To: emh at hvidevold.cjb.net
+Subject: Re: prblems with namingmnuse
+Date: Tue, 14 Dec 2004 15:07:48 +0100
+In-Reply-To: <20041210154936.GA12297 at wallach-ix> (Eivind Magnus Hvidevold's	message of "Fri, 10 Dec 2004 16:49:36 +0100")
+User-Agent: Gnus/5.110003 (No Gnus v0.3) Emacs/21.3.50 (gnu/linux)
+
+"Eivind Magnus Hvidevold" <emh at hvidevold.cjb.net> writes:
+
+Hello, 
+
+I got it working by installing swig 1.3.21, as you recomended.
+
+This means nmuse works only with this version of swig, since I had an
+earlier version installed previously.
+
+I think you should check this version in the configure script for
+python-taglib, and also, possibly, supply a test suite.
+(I wrote a trivial one to debug this problem)
+
+
+
+/Joakim
+
+> On Fri, Dec 10, 2004 at 10:52:39AM +0100, Joakim Verona wrote:
+>> Hello again,
+>> 
+>> When I attempted a real run of namingmuse I run into some problems.
+>> 
+>> in albumtag.py line 354 that looks like this:
+>> 
+>>             id1tag = fileref.ID3v1Tag(False)
+>> 
+>> idtag winds up as of type "str" not of Tag.
+>> 
+>> This breaks the program.
+> This sounds like a problem with the python-taglib bindings.  Try
+> printing id1tag. If it is a class description string then it is a
+> python-taglib binding error.
+>
+>> Any hints to repair it? I had a quickl look in cvs, but this line
+>> looks the same.
+> You have to play around with compiling the bindings. Do you have swig
+> installed? Which version? If you don't have swig the bindings won't be
+> regenerated at build time (which is less portable). Swig 1.3.21 is the
+> one I use. There seems to be a problem with 1.3.22 and 1.3.23 which we
+> haven't figured out yet.
+>
+>> I run the released packages of python-taglib and namingmnuse:
+>> 
+>> namingmuse-0.9.0 python-taglib-1.3.2
+>> 
+>> however, my taglib-devel pkg is only v 1.3.1. Cant this be a
+>> problem?
+> I'm also using python-taglib 1.3.2 and taglib 1.3.1. Should work fine.
+>
+>> Your link to taglib is broken, this seems to be the right one:
+>> http://developer.kde.org/~wheeler/taglib.htmlWhere? On the webpage?
+>
+>> there is no 1.3.2 there. Maybe the version numbers doesnt necesarily
+>> match up?
+> We try to keep the major version number (1.3) the same as taglib, but
+> the minor is off.
+>
+> -- 
+> EMH
+
+-- 
+Joakim Verona
+
+www.verona.se
+joakim at verona.se
+
+
+
+
+----- End forwarded message -----
+
+-- 
+EMH
+
+
+From emh at hvidevold.cjb.net  Tue Dec 14 19:21:49 2004
+From: emh at hvidevold.cjb.net (Eivind Magnus Hvidevold)
+Date: Tue, 14 Dec 2004 19:21:49 +0100
+Subject: [Namingmuse-devel] [joakim@verona.se: namingmuse search bugs]
+Message-ID: <20041214182149.GC15177@wallach-ix>
+
+----- Forwarded message from Joakim Verona <joakim at verona.se> -----
+
+From: Joakim Verona <joakim at verona.se>
+To: Eivind Magnus Hvidevold <emh at hvidevold.cjb.net>
+Subject: namingmuse search bugs
+Date: Tue, 14 Dec 2004 17:24:05 +0100
+User-Agent: Gnus/5.110003 (No Gnus v0.3) Emacs/21.3.50 (gnu/linux)
+
+Hello,
+
+There appears to be several bugs in the namingmuse freetext search
+stuff.
+
+- the filterBysongCount function fails because it gets the local
+  number of tracks wrong by one(at least for me)
+
+So i just commented out this, and found other bugs:
+
+- this field should be in the query:             ("allfields", "NO"),
+
+-              ("words", " ".join(searchwords)), 
+space rathern than plus.
+
+
+
+still, with the above changes, some tracks are mysteriously dropped by
+the parser.
+
+try for instance this query:
+
+http://www.freedb.org/freedb_search.php?words=30+minutes+death&allfields=NO&fields=artist&fields=title&allcats=YES&grouping=none
+
+and have a look at what searchfreedb.py returns for the same query.
+
+at least for me it drops 2 entries, for some reason.
+
+
+Cheers,
+-- 
+Joakim Verona
+
+www.verona.se
+joakim at verona.se
+
+
+
+
+----- End forwarded message -----
+
+-- 
+EMH
+
+
+From emh at hvidevold.cjb.net  Tue Dec 14 19:24:07 2004
+From: emh at hvidevold.cjb.net (Eivind Magnus Hvidevold)
+Date: Tue, 14 Dec 2004 19:24:07 +0100
+Subject: [Namingmuse-devel] [christian@daven.name: Python-LibTag Make Bug]
+Message-ID: <20041214182407.GD15177@wallach-ix>
+
+----- Forwarded message from Christian Daven <christian at daven.name> -----
+
+Date: Mon, 04 Oct 2004 09:41:49 +0200
+From: Christian Daven <christian at daven.name>
+User-Agent: Mozilla Thunderbird 0.8 (X11/20040918)
+X-Accept-Language: en-us, en
+To: emh at hvidevold.cjb.net
+Subject: Python-LibTag Make Bug
+
+Hello,
+
+And thanks for making python-libtag! Now, when i run "make install" it 
+installs _TagLib.so into /usr/local/lib/python2.3/site-packages, but my 
+Python libs aren't in "local"! I have a Gentoo installation and had to 
+manually move the files to /usr/lib/python2.3/site-packages.
+
+Maybe that's something for configure to figure out? Where Python libs 
+are stored?
+
+Cheers,
+
+Christian Dav?n
+
+
+
+
+----- End forwarded message -----
+
+-- 
+EMH
+
+
+From emh at hvidevold.cjb.net  Tue Dec 14 19:24:59 2004
+From: emh at hvidevold.cjb.net (Eivind Magnus Hvidevold)
+Date: Tue, 14 Dec 2004 19:24:59 +0100
+Subject: [Namingmuse-devel] [shadow333@gmail.com: python-taglib 1.3.2 make errors...]
+Message-ID: <20041214182459.GE15177@wallach-ix>
+
+----- Forwarded message from Markus Maier <shadow333 at gmail.com> -----
+
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws;        s=beta; d=gmail.com;        h=received:message-id:date:from:reply-to:to:subject:mime-version:content-type:content-transfer-encoding;        b=bB92EyMTcoLCFmLPhEcl6Z02fBoewRF0tJ5zYSaZPtvwgXJFAjOiDNSDs0v5sGbAMWdUit2Ug8y4O+E6/slkrNeaD7/XlK4n7jIUYFx/4I5QAXqMKHRin3Nkn4mWd6waMwb46VtBvG4HqkB4MZQfW4HM+I8KfI/wQrBzujEdU28=
+Date: Fri, 12 Nov 2004 01:33:03 +0100
+From: Markus Maier <shadow333 at gmail.com>
+Reply-To: Markus Maier <shadow333 at gmail.com>
+To: emh at hvidevold.cjb.net
+Subject: python-taglib 1.3.2 make errors...
+
+Hi, good late night...
+
+While building your program python-taglib-1.3.2, i got the following errors:
+
+make  all-am
+make[1]: Entering directory `/home/nevermind/python-taglib-1.3.2'
+/usr/bin/swig -c++ -I/usr/local/include/taglib -python -I. -o
+taglib_wrap.cxx taglib.i
+Generating wrappers for Python
+taglib.i : Line 13. Syntax error in input.
+taglib.i : Line 15. Syntax error in input.
+taglib.i : Line 18. Syntax error in input.
+taglib.i : Line 27. Syntax error in input.
+taglib.i : Line 35. Syntax error in input.
+taglib.i : Line 49. Syntax error in input.
+taglib.i : Line 54. Syntax error in input.
+taglib.i : Line 77. Syntax error in input.
+taglib.i : Line 80. Syntax error in input.
+taglib.i : Line 84. Syntax error in input.
+taglib.i : Line 91. Syntax error in input.
+/usr/local/include/taglib/taglib.h : Line 42. Variable TagLib multiply
+defined (2nd definition ignored).
+/usr/local/include/taglib/taglib.h : Line 42. Syntax error in input.
+/usr/local/include/taglib/taglib.h : Line 44. Syntax error in input.
+/usr/local/include/taglib/taglib.h : Line 55. Syntax error in input.
+/usr/local/include/taglib/taglib.h : Line 78. Syntax error in input.
+/usr/local/include/taglib/taglib.h : Line 90. Syntax error in input.
+/usr/local/include/taglib/taglib.h : Line 95. Syntax error in input.
+/usr/local/include/taglib/taglib.h : Line 108. Syntax error in input.
+/usr/local/include/taglib/taglib.h : Line 117. Syntax error in input.
+/usr/local/include/taglib/taglib.h : Line 119. Syntax error in input.
+/usr/local/include/taglib/taglib.h : Line 122. Syntax error in input.
+/usr/local/include/taglib/taglib.h : Line 123. Syntax error in input.
+Confused by earlier errors. Bailing out
+make[1]: *** [taglib_wrap.cxx] Error 1
+make[1]: Leaving directory `/home/nevermind/python-taglib-1.3.2'
+make: *** [all] Error 2
+
+im running a debian woody, with taglib-1.3.1, with the python and swig
+development files from the debian woody packages...
+
+the machine is an amd with 1.2ghz
+
+gcc version 2.95.4
+
+kernel 2.4.27-grsec
+
+my guess would be, that one of my packages is too old, but i am not
+sure, and id be thankful for every tip.
+
+big thx for reading through the whole thing.
+
+greets Oliver Leitner
+
+
+
+
+----- End forwarded message -----
+
+-- 
+EMH
+
+
+From emh at hvidevold.cjb.net  Tue Dec 14 19:27:13 2004
+From: emh at hvidevold.cjb.net (Eivind Magnus Hvidevold)
+Date: Tue, 14 Dec 2004 19:27:13 +0100
+Subject: [Namingmuse-devel] [emh@hvidevold.cjb.net: Re: prblems with namingmnuse]
+Message-ID: <20041214182713.GA15228@wallach-ix>
+
+----- Forwarded message from Eivind Magnus Hvidevold <emh at hvidevold.cjb.net> -----
+
+Date: Fri, 10 Dec 2004 16:49:36 +0100
+From: Eivind Magnus Hvidevold <emh at hvidevold.cjb.net>
+To: Joakim Verona <joakim at verona.se>
+Subject: Re: prblems with namingmnuse
+Reply-To: emh at hvidevold.cjb.net
+In-Reply-To: <m3fz2efpjs.fsf at naru.home>
+User-Agent: Mutt/1.4.2.1i
+X-Operating-System: Linux wallach-ix 2.6.9-2emh 
+X-URL: http://ozzie.ath.cx:81/~emh/
+
+
+On Fri, Dec 10, 2004 at 10:52:39AM +0100, Joakim Verona wrote:
+> Hello again,
+> 
+> When I attempted a real run of namingmuse I run into some problems.
+> 
+> in albumtag.py line 354 that looks like this:
+> 
+>             id1tag = fileref.ID3v1Tag(False)
+> 
+> idtag winds up as of type "str" not of Tag.
+> 
+> This breaks the program. 
+This sounds like a problem with the python-taglib bindings.  Try
+printing id1tag. If it is a class description string then it is a
+python-taglib binding error.
+
+> Any hints to repair it? I had a quickl look in cvs, but this line
+> looks the same.
+You have to play around with compiling the bindings. Do you have swig
+installed? Which version? If you don't have swig the bindings won't be
+regenerated at build time (which is less portable). Swig 1.3.21 is the
+one I use. There seems to be a problem with 1.3.22 and 1.3.23 which we
+haven't figured out yet.
+
+> I run the released packages of python-taglib and namingmnuse:
+> 
+> namingmuse-0.9.0  python-taglib-1.3.2
+> 
+> however, my taglib-devel pkg is only v 1.3.1. Cant this be a problem?
+I'm also using python-taglib 1.3.2 and taglib 1.3.1. Should work fine.
+
+> Your link to taglib is broken, this seems to be the right one:
+> http://developer.kde.org/~wheeler/taglib.html
+Where? On the webpage?
+
+> there is no 1.3.2 there. Maybe the version numbers doesnt necesarily
+> match up?
+We try to keep the major version number (1.3) the same as taglib, but
+the minor is off.
+
+-- 
+EMH
+
+----- End forwarded message -----
+
+-- 
+EMH
+
+
+From emh at hvidevold.cjb.net  Tue Dec 14 19:29:10 2004
+From: emh at hvidevold.cjb.net (Eivind Magnus Hvidevold)
+Date: Tue, 14 Dec 2004 19:29:10 +0100
+Subject: [Namingmuse-devel] [emh@hvidevold.cjb.net: Re: Python-LibTag Make Bug]
+Message-ID: <20041214182910.GC15228@wallach-ix>
+
+----- Forwarded message from Eivind Magnus Hvidevold <emh at hvidevold.cjb.net> -----
+
+Date: Mon, 4 Oct 2004 11:47:11 +0200
+From: Eivind Magnus Hvidevold <emh at hvidevold.cjb.net>
+To: Christian Daven <christian at daven.name>
+Subject: Re: Python-LibTag Make Bug
+Reply-To: emh at hvidevold.cjb.net
+In-Reply-To: <4160FEBD.3050903 at daven.name>
+User-Agent: Mutt/1.4.2.1i
+X-Operating-System: Linux giediprime 2.6.8-3emh 
+X-URL: http://ozzie.ath.cx:81/~emh/
+
+
+On Mon, Oct 04, 2004 at 09:41:49AM +0200, Christian Daven wrote:
+> Hello,
+> 
+> And thanks for making python-libtag! Now, when i run "make install" it 
+> installs _TagLib.so into /usr/local/lib/python2.3/site-packages, but my 
+> Python libs aren't in "local"! I have a Gentoo installation and had to 
+> manually move the files to /usr/lib/python2.3/site-packages.
+> 
+> Maybe that's something for configure to figure out? Where Python libs 
+> are stored?
+
+I've added AC_PREFIX_PROGRAM([python]) to configure.ac, so that the
+default prefix is now the same as the prefix where python was installed.
+You can get python-taglib-1.3.2 from berlios now.
+Thanks for the bug report!
+
+-- 
+EMH
+
+----- End forwarded message -----
+
+-- 
+EMH
+
+
+From emh at hvidevold.cjb.net  Tue Dec 14 19:27:52 2004
+From: emh at hvidevold.cjb.net (Eivind Magnus Hvidevold)
+Date: Tue, 14 Dec 2004 19:27:52 +0100
+Subject: [Namingmuse-devel] [emh@hvidevold.cjb.net: Re: namingmuse feedback]
+Message-ID: <20041214182752.GB15228@wallach-ix>
+
+----- Forwarded message from Eivind Magnus Hvidevold <emh at hvidevold.cjb.net> -----
+
+Date: Fri, 10 Dec 2004 17:20:04 +0100
+From: Eivind Magnus Hvidevold <emh at hvidevold.cjb.net>
+To: Joakim Verona <joakim at verona.se>
+Cc: Tor Hveem <tor at hveem.no>
+Subject: Re: namingmuse feedback
+Reply-To: emh at hvidevold.cjb.net
+In-Reply-To: <m3llc6fscj.fsf at naru.home>
+User-Agent: Mutt/1.4.2.1i
+X-Operating-System: Linux wallach-ix 2.6.9-2emh 
+X-URL: http://ozzie.ath.cx:81/~emh/
+
+
+On Fri, Dec 10, 2004 at 09:52:12AM +0100, Joakim Verona wrote:
+> Hello,
+> 
+> I'm trying out namingmuse right now, and it seems very cool!
+> 
+> I've been writing a tool like this myself, but it seems I can happily
+> scrap it now.
+> 
+> Some questions:
+> 
+> - how do i enable fetching of covverart?
+This is very preliminary and not integrated in the namingmuse interface.
+Tor Hveem wrote it: namingmuse/namingmuse/coverfetcher.py. We have
+support for adding pictures to ID3 tags in python-taglib (I think), but
+we haven't written the actual python code to tag audio files with
+pictures yet. 
+ 
+> - it would be nice if you enabled more "hooks" like the
+> namingpolicy.py one(btw, there is a documentation bug - the local
+> namingpolicy.py file is sometimes refered to as namingmusepolicy.py)
+Fixed doc bug.
+
+> Specifically I want some "post process" hook. In my case I would hook
+> in a function that would 1) write an xml file with meta info like
+> track names and freedb id 2) perform some sanity checks on the mp3s,
+> and confirm that they arent garbage.
+More hooks is a good idea. TODO. Will be simpler to implement as we
+improve on the overall design and make it more general.
+
+> - when namingmuse doesnt find a freedb match, it should be possible to
+>   enter the id manually
+I didn't think this was needed, since you can do full text search using
+the CLI. But might be handy.. added to TODO.
+
+> - sometimes the mp3 dirs have confused naming, and doesnt sort, which
+>   means discid algorithms will fail. In those rare cases, it would be
+>   nice to be able to enter the sequence manually. (ok it might be
+>   simpler to just edit the names with an dir editor)
+TODO (I use qmv from renameutils if I have to do this, but mostly I just
+use fulltext search if the order is wrong).
+
+> I would be happy to work on these features, as time permits, if you want some help.
+Sure. Patches are always welcome. As you can see, there's lots to do in
+ever growing TODO.
+
+-- 
+EMH
+
+----- End forwarded message -----
+
+-- 
+EMH
+
+
+From emh at hvidevold.cjb.net  Tue Dec 14 19:29:32 2004
+From: emh at hvidevold.cjb.net (Eivind Magnus Hvidevold)
+Date: Tue, 14 Dec 2004 19:29:32 +0100
+Subject: [Namingmuse-devel] [emh@hvidevold.cjb.net: python-taglib+swig!=1.3.21]
+Message-ID: <20041214182932.GD15228@wallach-ix>
+
+----- Forwarded message from Eivind Magnus Hvidevold <emh at hvidevold.cjb.net> -----
+
+Date: Sun, 28 Nov 2004 16:21:47 +0100
+From: Eivind Magnus Hvidevold <emh at hvidevold.cjb.net>
+To: bdusauso at beeznest.net
+Cc: Tor Hveem <tor at hveem.no>
+Subject: python-taglib+swig!=1.3.21
+Reply-To: emh at hvidevold.cjb.net
+User-Agent: Mutt/1.4.2.1i
+X-Operating-System: Linux wallach-ix 2.6.9-2emh 
+X-URL: http://ozzie.ath.cx:81/~emh/
+
+
+I upgraded to swig 1.3.23 from 21 yesterday and tried to compile
+taglib.i, but all I got was a segfault. Swig was choking on a null
+pointer. I'm not sure what's going on, but to me it looks like a swig
+bug. I've got an exam tomorrow (which I'm very unprepared for). I'll
+investigate the swig problems more thoroughly later, and in any case I
+will add swig version checking to python-taglib autoconf for the next
+release.
+
+-- 
+EMH
+
+----- End forwarded message -----
+
+-- 
+EMH
+
+

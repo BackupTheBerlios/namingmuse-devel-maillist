@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Namingmuse-devel] [emh at hvidevold.cjb.net: Re: prblems with namingmnuse]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/namingmuse-devel/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:namingmuse-devel%40lists.berlios.de?Subject=Re%3A%20%5BNamingmuse-devel%5D%20%5Bemh%40hvidevold.cjb.net%3A%20Re%3A%20prblems%20with%20namingmnuse%5D&In-Reply-To=%3C20041214182713.GA15228%40wallach-ix%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000006.html">
+   <LINK REL="Next"  HREF="000009.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Namingmuse-devel] [emh at hvidevold.cjb.net: Re: prblems with namingmnuse]</H1>
+    <B>Eivind Magnus Hvidevold</B> 
+    <A HREF="mailto:namingmuse-devel%40lists.berlios.de?Subject=Re%3A%20%5BNamingmuse-devel%5D%20%5Bemh%40hvidevold.cjb.net%3A%20Re%3A%20prblems%20with%20namingmnuse%5D&In-Reply-To=%3C20041214182713.GA15228%40wallach-ix%3E"
+       TITLE="[Namingmuse-devel] [emh at hvidevold.cjb.net: Re: prblems with namingmnuse]">emh at hvidevold.cjb.net
+       </A><BR>
+    <I>Tue Dec 14 19:27:13 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000006.html">[Namingmuse-devel] [shadow333 at gmail.com: python-taglib 1.3.2 make errors...]
+</A></li>
+        <LI>Next message: <A HREF="000009.html">[Namingmuse-devel] [emh at hvidevold.cjb.net: Re: namingmuse feedback]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#7">[ date ]</a>
+              <a href="thread.html#7">[ thread ]</a>
+              <a href="subject.html#7">[ subject ]</a>
+              <a href="author.html#7">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>----- Forwarded message from Eivind Magnus Hvidevold &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">emh at hvidevold.cjb.net</A>&gt; -----
+
+Date: Fri, 10 Dec 2004 16:49:36 +0100
+From: Eivind Magnus Hvidevold &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">emh at hvidevold.cjb.net</A>&gt;
+To: Joakim Verona &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">joakim at verona.se</A>&gt;
+Subject: Re: prblems with namingmnuse
+Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">emh at hvidevold.cjb.net</A>
+In-Reply-To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">m3fz2efpjs.fsf at naru.home</A>&gt;
+User-Agent: Mutt/1.4.2.1i
+X-Operating-System: Linux wallach-ix 2.6.9-2emh 
+X-URL: <A HREF="http://ozzie.ath.cx:81/~emh/">http://ozzie.ath.cx:81/~emh/</A>
+
+
+On Fri, Dec 10, 2004 at 10:52:39AM +0100, Joakim Verona wrote:
+&gt;<i> Hello again,
+</I>&gt;<i> 
+</I>&gt;<i> When I attempted a real run of namingmuse I run into some problems.
+</I>&gt;<i> 
+</I>&gt;<i> in albumtag.py line 354 that looks like this:
+</I>&gt;<i> 
+</I>&gt;<i>             id1tag = fileref.ID3v1Tag(False)
+</I>&gt;<i> 
+</I>&gt;<i> idtag winds up as of type &quot;str&quot; not of Tag.
+</I>&gt;<i> 
+</I>&gt;<i> This breaks the program. 
+</I>This sounds like a problem with the python-taglib bindings.  Try
+printing id1tag. If it is a class description string then it is a
+python-taglib binding error.
+
+&gt;<i> Any hints to repair it? I had a quickl look in cvs, but this line
+</I>&gt;<i> looks the same.
+</I>You have to play around with compiling the bindings. Do you have swig
+installed? Which version? If you don't have swig the bindings won't be
+regenerated at build time (which is less portable). Swig 1.3.21 is the
+one I use. There seems to be a problem with 1.3.22 and 1.3.23 which we
+haven't figured out yet.
+
+&gt;<i> I run the released packages of python-taglib and namingmnuse:
+</I>&gt;<i> 
+</I>&gt;<i> namingmuse-0.9.0  python-taglib-1.3.2
+</I>&gt;<i> 
+</I>&gt;<i> however, my taglib-devel pkg is only v 1.3.1. Cant this be a problem?
+</I>I'm also using python-taglib 1.3.2 and taglib 1.3.1. Should work fine.
+
+&gt;<i> Your link to taglib is broken, this seems to be the right one:
+</I>&gt;<i> <A HREF="http://developer.kde.org/~wheeler/taglib.html">http://developer.kde.org/~wheeler/taglib.html</A>
+</I>Where? On the webpage?
+
+&gt;<i> there is no 1.3.2 there. Maybe the version numbers doesnt necesarily
+</I>&gt;<i> match up?
+</I>We try to keep the major version number (1.3) the same as taglib, but
+the minor is off.
+
+-- 
+EMH
+
+----- End forwarded message -----
+
+-- 
+EMH
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000006.html">[Namingmuse-devel] [shadow333 at gmail.com: python-taglib 1.3.2 make errors...]
+</A></li>
+	<LI>Next message: <A HREF="000009.html">[Namingmuse-devel] [emh at hvidevold.cjb.net: Re: namingmuse feedback]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#7">[ date ]</a>
+              <a href="thread.html#7">[ thread ]</a>
+              <a href="subject.html#7">[ subject ]</a>
+              <a href="author.html#7">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">More information about the Namingmuse-devel
+mailing list</a><br>
+</body></html>

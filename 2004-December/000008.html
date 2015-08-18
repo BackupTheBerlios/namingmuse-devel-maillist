@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Namingmuse-devel] [emh at hvidevold.cjb.net: Re: Python-LibTag Make Bug]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/namingmuse-devel/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:namingmuse-devel%40lists.berlios.de?Subject=Re%3A%20%5BNamingmuse-devel%5D%20%5Bemh%40hvidevold.cjb.net%3A%20Re%3A%20Python-LibTag%20Make%20Bug%5D&In-Reply-To=%3C20041214182910.GC15228%40wallach-ix%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000009.html">
+   <LINK REL="Next"  HREF="000010.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Namingmuse-devel] [emh at hvidevold.cjb.net: Re: Python-LibTag Make Bug]</H1>
+    <B>Eivind Magnus Hvidevold</B> 
+    <A HREF="mailto:namingmuse-devel%40lists.berlios.de?Subject=Re%3A%20%5BNamingmuse-devel%5D%20%5Bemh%40hvidevold.cjb.net%3A%20Re%3A%20Python-LibTag%20Make%20Bug%5D&In-Reply-To=%3C20041214182910.GC15228%40wallach-ix%3E"
+       TITLE="[Namingmuse-devel] [emh at hvidevold.cjb.net: Re: Python-LibTag Make Bug]">emh at hvidevold.cjb.net
+       </A><BR>
+    <I>Tue Dec 14 19:29:10 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000009.html">[Namingmuse-devel] [emh at hvidevold.cjb.net: Re: namingmuse feedback]
+</A></li>
+        <LI>Next message: <A HREF="000010.html">[Namingmuse-devel] [emh at hvidevold.cjb.net: python-taglib+swig!=1.3.21]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#8">[ date ]</a>
+              <a href="thread.html#8">[ thread ]</a>
+              <a href="subject.html#8">[ subject ]</a>
+              <a href="author.html#8">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>----- Forwarded message from Eivind Magnus Hvidevold &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">emh at hvidevold.cjb.net</A>&gt; -----
+
+Date: Mon, 4 Oct 2004 11:47:11 +0200
+From: Eivind Magnus Hvidevold &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">emh at hvidevold.cjb.net</A>&gt;
+To: Christian Daven &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">christian at daven.name</A>&gt;
+Subject: Re: Python-LibTag Make Bug
+Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">emh at hvidevold.cjb.net</A>
+In-Reply-To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">4160FEBD.3050903 at daven.name</A>&gt;
+User-Agent: Mutt/1.4.2.1i
+X-Operating-System: Linux giediprime 2.6.8-3emh 
+X-URL: <A HREF="http://ozzie.ath.cx:81/~emh/">http://ozzie.ath.cx:81/~emh/</A>
+
+
+On Mon, Oct 04, 2004 at 09:41:49AM +0200, Christian Daven wrote:
+&gt;<i> Hello,
+</I>&gt;<i> 
+</I>&gt;<i> And thanks for making python-libtag! Now, when i run &quot;make install&quot; it 
+</I>&gt;<i> installs _TagLib.so into /usr/local/lib/python2.3/site-packages, but my 
+</I>&gt;<i> Python libs aren't in &quot;local&quot;! I have a Gentoo installation and had to 
+</I>&gt;<i> manually move the files to /usr/lib/python2.3/site-packages.
+</I>&gt;<i> 
+</I>&gt;<i> Maybe that's something for configure to figure out? Where Python libs 
+</I>&gt;<i> are stored?
+</I>
+I've added AC_PREFIX_PROGRAM([python]) to configure.ac, so that the
+default prefix is now the same as the prefix where python was installed.
+You can get python-taglib-1.3.2 from berlios now.
+Thanks for the bug report!
+
+-- 
+EMH
+
+----- End forwarded message -----
+
+-- 
+EMH
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000009.html">[Namingmuse-devel] [emh at hvidevold.cjb.net: Re: namingmuse feedback]
+</A></li>
+	<LI>Next message: <A HREF="000010.html">[Namingmuse-devel] [emh at hvidevold.cjb.net: python-taglib+swig!=1.3.21]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#8">[ date ]</a>
+              <a href="thread.html#8">[ thread ]</a>
+              <a href="subject.html#8">[ subject ]</a>
+              <a href="author.html#8">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">More information about the Namingmuse-devel
+mailing list</a><br>
+</body></html>

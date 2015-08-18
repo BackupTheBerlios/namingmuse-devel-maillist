@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Namingmuse-devel] compiling namingmuse-0.9.1-1emh.src.rpm
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/namingmuse-devel/2005-June/index.html" >
+   <LINK REL="made" HREF="mailto:namingmuse-devel%40lists.berlios.de?Subject=Re%3A%20%5BNamingmuse-devel%5D%20compiling%20namingmuse-0.9.1-1emh.src.rpm&In-Reply-To=%3CPine.LNX.4.61.0506130315450.15483%40tuomi.oulu.fi%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000017.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Namingmuse-devel] compiling namingmuse-0.9.1-1emh.src.rpm</H1>
+    <B>Tomi Hautakoski</B> 
+    <A HREF="mailto:namingmuse-devel%40lists.berlios.de?Subject=Re%3A%20%5BNamingmuse-devel%5D%20compiling%20namingmuse-0.9.1-1emh.src.rpm&In-Reply-To=%3CPine.LNX.4.61.0506130315450.15483%40tuomi.oulu.fi%3E"
+       TITLE="[Namingmuse-devel] compiling namingmuse-0.9.1-1emh.src.rpm">thauta at iki.fi
+       </A><BR>
+    <I>Mon Jun 13 02:20:34 CEST 2005</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000017.html">[Namingmuse-devel] compiling namingmuse-0.9.1-1emh.src.rpm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#16">[ date ]</a>
+              <a href="thread.html#16">[ thread ]</a>
+              <a href="subject.html#16">[ subject ]</a>
+              <a href="author.html#16">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I don't know if this is a FAQ (didn't find it) but I'm having problems 
+just to compile the .src.rpm:
+
+rpmbuild --rebuild namingmuse-0.9.1-1emh.src.rpm
+Installing namingmuse-0.9.1-1emh.src.rpm
+warning: user emh does not exist - using root
+warning: group emh does not exist - using root
+warning: user emh does not exist - using root
+warning: group emh does not exist - using root
+Executing(%prep): /bin/sh -e /var/tmp/rpm-tmp.86822
++ umask 022
++ cd /usr/src/redhat/BUILD
++ cd /usr/src/redhat/BUILD
++ rm -rf namingmuse-0.9.1
++ /bin/gzip -dc /usr/src/redhat/SOURCES/namingmuse-0.9.1.tar.gz
++ tar -xf -
++ STATUS=0
++ '[' 0 -ne 0 ']'
++ cd namingmuse-0.9.1
+++ /usr/bin/id -u
++ '[' 0 = 0 ']'
++ /bin/chown -Rhf root .
+++ /usr/bin/id -u
++ '[' 0 = 0 ']'
++ /bin/chgrp -Rhf root .
++ /bin/chmod -Rf a+rX,u+w,g-w,o-w .
++ exit 0
+Executing(%build): /bin/sh -e /var/tmp/rpm-tmp.86822
++ umask 022
++ cd /usr/src/redhat/BUILD
++ cd namingmuse-0.9.1
++ /usr/bin/make doc
+cat README.in &gt; README
+./nmuse --doc &gt;&gt; README
+Traceback (most recent call last):
+   File &quot;./nmuse&quot;, line 3, in ?
+     from namingmuse import client
+   File &quot;./namingmuse/client.py&quot;, line 14, in ?
+     from optparse import OptionParser, OptionGroup, make_option
+ImportError: No module named optparse
+make: *** [doc] Error 1
+error: Bad exit status from /var/tmp/rpm-tmp.86822 (%build)
+
+python-taglib-1.3.3-1emh.i386.rpm and taglib-1.3.1 are installed. 
+Otherwise my system is an updated RH 9 (python-2.2.2-26). Any suggestions, 
+please? Am I missing some python module or what?
+
+Tomi Hautakoski
+<A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">thauta at iki.fi</A>
+                        Inertia makes the world go round.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000017.html">[Namingmuse-devel] compiling namingmuse-0.9.1-1emh.src.rpm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#16">[ date ]</a>
+              <a href="thread.html#16">[ thread ]</a>
+              <a href="subject.html#16">[ subject ]</a>
+              <a href="author.html#16">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">More information about the Namingmuse-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Namingmuse-devel] [joakim at verona.se: prblems with namingmnuse]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/namingmuse-devel/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:namingmuse-devel%40lists.berlios.de?Subject=Re%3A%20%5BNamingmuse-devel%5D%20%5Bjoakim%40verona.se%3A%20prblems%20with%20namingmnuse%5D&In-Reply-To=%3C20041214182038.GA15177%40wallach-ix%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000001.html">
+   <LINK REL="Next"  HREF="000003.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Namingmuse-devel] [joakim at verona.se: prblems with namingmnuse]</H1>
+    <B>Eivind Magnus Hvidevold</B> 
+    <A HREF="mailto:namingmuse-devel%40lists.berlios.de?Subject=Re%3A%20%5BNamingmuse-devel%5D%20%5Bjoakim%40verona.se%3A%20prblems%20with%20namingmnuse%5D&In-Reply-To=%3C20041214182038.GA15177%40wallach-ix%3E"
+       TITLE="[Namingmuse-devel] [joakim at verona.se: prblems with namingmnuse]">emh at hvidevold.cjb.net
+       </A><BR>
+    <I>Tue Dec 14 19:20:38 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000001.html">[Namingmuse-devel] [Joakim Verona: namingmuse feedback]
+</A></li>
+        <LI>Next message: <A HREF="000003.html">[Namingmuse-devel] [joakim at verona.se: Re: prblems with namingmnuse]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2">[ date ]</a>
+              <a href="thread.html#2">[ thread ]</a>
+              <a href="subject.html#2">[ subject ]</a>
+              <a href="author.html#2">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>----- Forwarded message from Joakim Verona &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">joakim at verona.se</A>&gt; -----
+
+From: Joakim Verona &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">joakim at verona.se</A>&gt;
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">emh at hvidevold.cjb.net</A>
+Subject: prblems with namingmnuse
+Date: Fri, 10 Dec 2004 10:52:39 +0100
+User-Agent: Gnus/5.110003 (No Gnus v0.3) Emacs/21.3.50 (gnu/linux)
+
+Hello again,
+
+When I attempted a real run of namingmuse I run into some problems.
+
+in albumtag.py line 354 that looks like this:
+
+            id1tag = fileref.ID3v1Tag(False)
+
+idtag winds up as of type &quot;str&quot; not of Tag.
+
+This breaks the program. 
+
+Any hints to repair it? I had a quickl look in cvs, but this line
+looks the same.
+
+I run the released packages of python-taglib and namingmnuse:
+
+namingmuse-0.9.0  python-taglib-1.3.2
+
+however, my taglib-devel pkg is only v 1.3.1. Cant this be a problem?
+
+Your link to taglib is broken, this seems to be the right one:
+<A HREF="http://developer.kde.org/~wheeler/taglib.html">http://developer.kde.org/~wheeler/taglib.html</A>
+
+there is no 1.3.2 there. Maybe the version numbers doesnt necesarily
+match up?
+
+
+Cheers, 
+
+-- 
+Joakim Verona
+
+www.verona.se
+<A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">joakim at verona.se</A>
+
+
+
+
+----- End forwarded message -----
+
+-- 
+EMH
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000001.html">[Namingmuse-devel] [Joakim Verona: namingmuse feedback]
+</A></li>
+	<LI>Next message: <A HREF="000003.html">[Namingmuse-devel] [joakim at verona.se: Re: prblems with namingmnuse]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2">[ date ]</a>
+              <a href="thread.html#2">[ thread ]</a>
+              <a href="subject.html#2">[ subject ]</a>
+              <a href="author.html#2">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">More information about the Namingmuse-devel
+mailing list</a><br>
+</body></html>

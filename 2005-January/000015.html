@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Namingmuse-devel] Re: Namingmuse
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/namingmuse-devel/2005-January/index.html" >
+   <LINK REL="made" HREF="mailto:namingmuse-devel%40lists.berlios.de?Subject=Re%3A%20%5BNamingmuse-devel%5D%20Re%3A%20Namingmuse&In-Reply-To=%3C20050126221407.GB24126%40wallach-ix%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000014.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Namingmuse-devel] Re: Namingmuse</H1>
+    <B>Eivind Magnus Hvidevold</B> 
+    <A HREF="mailto:namingmuse-devel%40lists.berlios.de?Subject=Re%3A%20%5BNamingmuse-devel%5D%20Re%3A%20Namingmuse&In-Reply-To=%3C20050126221407.GB24126%40wallach-ix%3E"
+       TITLE="[Namingmuse-devel] Re: Namingmuse">emh at hvidevold.cjb.net
+       </A><BR>
+    <I>Wed Jan 26 23:14:07 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000014.html">[Namingmuse-devel] [magnus.bjorklof at hut.fi: Re: Namingmuse]
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#15">[ date ]</a>
+              <a href="thread.html#15">[ thread ]</a>
+              <a href="subject.html#15">[ subject ]</a>
+              <a href="author.html#15">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Jan 26, 2005 at 11:35:11PM +0200, Magnus Bj&#246;rkl&#246;f wrote:
+&gt;<i> OK, so I was mainly looking for some script that would use some intelligent way
+</I>&gt;<i> of creating filennames for mp3:s. Some of my mp3s are sorted according to
+</I>&gt;<i> Artists and those should be renamed so maybe nmuse will work there but mostly
+</I>&gt;<i> when I get new files they are not sorted and I'd like a script that would rename
+</I>&gt;<i> and sort them for me. But this is not at all what you are planning to implement,
+</I>&gt;<i> or? I could try to implement something like that (if I can find some time) and
+</I>&gt;<i> add it to your software but if that's not at all what your software is ment for
+</I>&gt;<i> then I should maybe try some other script. Haven't found any good script that
+</I>&gt;<i> would do this. Do you know any?
+</I>
+Well, the CVS version of namingmuse does have a '--local' option, which
+renames files according to the tags and policy. That's what you want if
+you already have reasonably good tags for your MP3s, but bad filenames.
+
+I'm planning at some point to implement a filename guessing module that sets
+album/artist/... in the tag from the filename, but I don't know when. I
+have some architectural worries to take care of first. If you want to do
+this then put the module in providers/filenameguess.py and make an
+AlbumInfo subclass.
+
+There are many projects out there that do local renaming/tagging
+already, but with varying degree of support for file formats other than
+mp3 and charsets other than ASCII. You could search <A HREF="http://freshmeat.net">http://freshmeat.net</A>
+for 'mp3 rename' and see if you find any projects that currently fit
+your needs better.
+
+-- 
+EMH
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000014.html">[Namingmuse-devel] [magnus.bjorklof at hut.fi: Re: Namingmuse]
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#15">[ date ]</a>
+              <a href="thread.html#15">[ thread ]</a>
+              <a href="subject.html#15">[ subject ]</a>
+              <a href="author.html#15">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">More information about the Namingmuse-devel
+mailing list</a><br>
+</body></html>

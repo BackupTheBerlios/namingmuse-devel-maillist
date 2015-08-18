@@ -1,0 +1,26 @@
+From raniz at gmx.net  Tue Feb 21 09:22:27 2006
+From: raniz at gmx.net (Daniel Raneland)
+Date: Tue, 21 Feb 2006 09:22:27 +0100
+Subject: [Namingmuse-devel] python-taglib for newer versions
+Message-ID: <200602210922.27571.raniz@gmx.net>
+
+Hi
+
+I noticed that python-taglib wouldn't compile against the current version of 
+TagLib.
+
+It was only simple namespace errors.
+'FileTypeResolver' should be changed to 'TagLib::FileRef::FileTypeResolver'.
+
+Regards Raniz
+-- 
+Daniel Raneland
+raniz at gmx.net
+dt05dr1 at student.lth.se
+
+Vildandsv?gen 26A
+227 34 Lund
+
+070 284 04 13
+
+

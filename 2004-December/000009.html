@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Namingmuse-devel] [emh at hvidevold.cjb.net: Re: namingmuse feedback]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/namingmuse-devel/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:namingmuse-devel%40lists.berlios.de?Subject=Re%3A%20%5BNamingmuse-devel%5D%20%5Bemh%40hvidevold.cjb.net%3A%20Re%3A%20namingmuse%20feedback%5D&In-Reply-To=%3C20041214182752.GB15228%40wallach-ix%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000007.html">
+   <LINK REL="Next"  HREF="000008.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Namingmuse-devel] [emh at hvidevold.cjb.net: Re: namingmuse feedback]</H1>
+    <B>Eivind Magnus Hvidevold</B> 
+    <A HREF="mailto:namingmuse-devel%40lists.berlios.de?Subject=Re%3A%20%5BNamingmuse-devel%5D%20%5Bemh%40hvidevold.cjb.net%3A%20Re%3A%20namingmuse%20feedback%5D&In-Reply-To=%3C20041214182752.GB15228%40wallach-ix%3E"
+       TITLE="[Namingmuse-devel] [emh at hvidevold.cjb.net: Re: namingmuse feedback]">emh at hvidevold.cjb.net
+       </A><BR>
+    <I>Tue Dec 14 19:27:52 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000007.html">[Namingmuse-devel] [emh at hvidevold.cjb.net: Re: prblems with namingmnuse]
+</A></li>
+        <LI>Next message: <A HREF="000008.html">[Namingmuse-devel] [emh at hvidevold.cjb.net: Re: Python-LibTag Make Bug]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#9">[ date ]</a>
+              <a href="thread.html#9">[ thread ]</a>
+              <a href="subject.html#9">[ subject ]</a>
+              <a href="author.html#9">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>----- Forwarded message from Eivind Magnus Hvidevold &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">emh at hvidevold.cjb.net</A>&gt; -----
+
+Date: Fri, 10 Dec 2004 17:20:04 +0100
+From: Eivind Magnus Hvidevold &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">emh at hvidevold.cjb.net</A>&gt;
+To: Joakim Verona &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">joakim at verona.se</A>&gt;
+Cc: Tor Hveem &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">tor at hveem.no</A>&gt;
+Subject: Re: namingmuse feedback
+Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">emh at hvidevold.cjb.net</A>
+In-Reply-To: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">m3llc6fscj.fsf at naru.home</A>&gt;
+User-Agent: Mutt/1.4.2.1i
+X-Operating-System: Linux wallach-ix 2.6.9-2emh 
+X-URL: <A HREF="http://ozzie.ath.cx:81/~emh/">http://ozzie.ath.cx:81/~emh/</A>
+
+
+On Fri, Dec 10, 2004 at 09:52:12AM +0100, Joakim Verona wrote:
+&gt;<i> Hello,
+</I>&gt;<i> 
+</I>&gt;<i> I'm trying out namingmuse right now, and it seems very cool!
+</I>&gt;<i> 
+</I>&gt;<i> I've been writing a tool like this myself, but it seems I can happily
+</I>&gt;<i> scrap it now.
+</I>&gt;<i> 
+</I>&gt;<i> Some questions:
+</I>&gt;<i> 
+</I>&gt;<i> - how do i enable fetching of covverart?
+</I>This is very preliminary and not integrated in the namingmuse interface.
+Tor Hveem wrote it: namingmuse/namingmuse/coverfetcher.py. We have
+support for adding pictures to ID3 tags in python-taglib (I think), but
+we haven't written the actual python code to tag audio files with
+pictures yet. 
+ 
+&gt;<i> - it would be nice if you enabled more &quot;hooks&quot; like the
+</I>&gt;<i> namingpolicy.py one(btw, there is a documentation bug - the local
+</I>&gt;<i> namingpolicy.py file is sometimes refered to as namingmusepolicy.py)
+</I>Fixed doc bug.
+
+&gt;<i> Specifically I want some &quot;post process&quot; hook. In my case I would hook
+</I>&gt;<i> in a function that would 1) write an xml file with meta info like
+</I>&gt;<i> track names and freedb id 2) perform some sanity checks on the mp3s,
+</I>&gt;<i> and confirm that they arent garbage.
+</I>More hooks is a good idea. TODO. Will be simpler to implement as we
+improve on the overall design and make it more general.
+
+&gt;<i> - when namingmuse doesnt find a freedb match, it should be possible to
+</I>&gt;<i>   enter the id manually
+</I>I didn't think this was needed, since you can do full text search using
+the CLI. But might be handy.. added to TODO.
+
+&gt;<i> - sometimes the mp3 dirs have confused naming, and doesnt sort, which
+</I>&gt;<i>   means discid algorithms will fail. In those rare cases, it would be
+</I>&gt;<i>   nice to be able to enter the sequence manually. (ok it might be
+</I>&gt;<i>   simpler to just edit the names with an dir editor)
+</I>TODO (I use qmv from renameutils if I have to do this, but mostly I just
+use fulltext search if the order is wrong).
+
+&gt;<i> I would be happy to work on these features, as time permits, if you want some help.
+</I>Sure. Patches are always welcome. As you can see, there's lots to do in
+ever growing TODO.
+
+-- 
+EMH
+
+----- End forwarded message -----
+
+-- 
+EMH
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000007.html">[Namingmuse-devel] [emh at hvidevold.cjb.net: Re: prblems with namingmnuse]
+</A></li>
+	<LI>Next message: <A HREF="000008.html">[Namingmuse-devel] [emh at hvidevold.cjb.net: Re: Python-LibTag Make Bug]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#9">[ date ]</a>
+              <a href="thread.html#9">[ thread ]</a>
+              <a href="subject.html#9">[ subject ]</a>
+              <a href="author.html#9">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">More information about the Namingmuse-devel
+mailing list</a><br>
+</body></html>

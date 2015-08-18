@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Namingmuse-devel] Re: Namingmuse
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/namingmuse-devel/2005-January/index.html" >
+   <LINK REL="made" HREF="mailto:namingmuse-devel%40lists.berlios.de?Subject=Re%3A%20%5BNamingmuse-devel%5D%20Re%3A%20Namingmuse&In-Reply-To=%3C20050126210159.GB19997%40wallach-ix%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000012.html">
+   <LINK REL="Next"  HREF="000014.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Namingmuse-devel] Re: Namingmuse</H1>
+    <B>Eivind Magnus Hvidevold</B> 
+    <A HREF="mailto:namingmuse-devel%40lists.berlios.de?Subject=Re%3A%20%5BNamingmuse-devel%5D%20Re%3A%20Namingmuse&In-Reply-To=%3C20050126210159.GB19997%40wallach-ix%3E"
+       TITLE="[Namingmuse-devel] Re: Namingmuse">emh at hvidevold.cjb.net
+       </A><BR>
+    <I>Wed Jan 26 22:01:59 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000012.html">[Namingmuse-devel] [magnus.bjorklof at hut.fi: Namingmuse]
+</A></li>
+        <LI>Next message: <A HREF="000014.html">[Namingmuse-devel] [magnus.bjorklof at hut.fi: Re: Namingmuse]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#13">[ date ]</a>
+              <a href="thread.html#13">[ thread ]</a>
+              <a href="subject.html#13">[ subject ]</a>
+              <a href="author.html#13">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Jan 26, 2005 at 10:11:29PM +0200, Magnus Bj&#246;rkl&#246;f wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> I tried your Namingmuse software. It really seems to be what I need since I've
+</I>&gt;<i> got 125 GB of mp3s that need to have the right tags and need to be organized
+</I>&gt;<i> according to Artists and Genre. Only bad thing is I can't really get it to work.
+</I>&gt;<i> 
+</I>&gt;<i> I have installed the following packages:
+</I>&gt;<i> namingmuse-0.9.0-1emh.noarch.rpm
+</I>&gt;<i> python-taglib-1.3.2-1emh.i686.rpm
+</I>&gt;<i> taglib-1.3-1mdk.i586.rpm
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Here's one thing that doesn't work:
+</I>&gt;<i> 
+</I>&gt;<i> $ nmuse -d --dry-run .
+</I>&gt;<i> TagLib: ID3v2.4 no longer supports the frame type TSIZ.  It will be discarded
+</I>&gt;<i> from the tag.
+</I>&gt;<i> TagLib: MPEG::Header::parse() -- Invalid sample rate.
+</I>&gt;<i> TagLib: MPEG::Header::parse() -- Invalid sample rate.
+</I>&gt;<i> TagLib: MPEG::Header::parse() -- Invalid sample rate.
+</I>&gt;<i> TagLib: MPEG::Header::parse() -- Invalid sample rate.
+</I>&gt;<i> CDDBP Exception: -1 timed out waiting for reply, send: cddb query 457b1881 129
+</I>&gt;<i> 150 17850 42225 59100 77475 89400 106050 125850 144675 164625 183750
+</I>&gt;<i> 205950226200 238350 257700 272850 291075 315375 331800 345375 364050 378225
+</I>&gt;<i> 396825 413625 433500 456750 495525 514275 540375 558300 574125 588825 606975
+</I>&gt;<i> 622200 640950 668625 684375 699375 717525 736125 759675 780150 797625 813075
+</I>&gt;<i> 838275 853800 871425 890550 906825 923700 941550 959775 981525 1005600 1026075
+</I>&gt;<i> 1043550 1058625 1076325 1102425 1119150 1133250 1150575 1167375 1187325 1206000
+</I>&gt;<i> 1227975 1246350 1262100 1276125 1290300 1306725 1323600 1351050 1367100 1381125
+</I>&gt;<i> 1395900 1416675 1438650 1453575 1472100 1488600 1506750 1529175 1545375 1562925
+</I>&gt;<i> 1582650 1602825 1620900 1637175 1657575 1671825 1694100 1710825 1728075 1744650
+</I>&gt;<i> 1758525 1773525 1788750 1809000 1822575 1841325 1863000 1882125 1900350 1919625
+</I>&gt;<i> 1935000 1953225 1970325 1994550 2012100 2030550 2049900 2065725 20844002104875
+</I>&gt;<i> 2122350 2141850 2163300 2182875 2197575 2211975 2228850 2248350 2266425 2283825
+</I>&gt;<i> 2301675 2314200 2331450 2351475 31512
+</I>&gt;<i> term: '
+</I>&gt;<i> '
+</I>&gt;<i> data:
+</I>Nmuse is an album oriented tagger. It assumes that the music files are
+already organized by one album per directory. It seems you are trying to
+run it on a directory with 129 files.. That doesn't sound like a normal
+album to me. Probably why the cddb lookup chokes.. I guess we should
+emit an intelligible error message if run on a folder that doesn't
+appear to be an album (perhaps check for play time &gt; max CD playtime).
+
+&gt;<i> How should I specify how I would like the files to look like when using the -n
+</I>&gt;<i> option?
+</I>I'm sorry, it has not been made configurable yet (You would have to edit
+the regular expressions in namingmuse/namefix.py). The namefix option is
+mainly for fixing capitalization, removing garbage characters etc.. It
+doesn't try to guess about artist, album, year etc; it just treats the
+filename as a string. It's meant as a &quot;quick fix&quot; to improve the names
+in the absence of proper metainformation from an online database.
+
+On the other hand, if you want to configure the filename format when you
+get information from freedb, then have a look at namingmuse/policy.py:
+You can put a file in ~/.namingmuse/namingpolicy.py that redefines the
+filename generator functions from policy.py.
+
+-- 
+EMH
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000012.html">[Namingmuse-devel] [magnus.bjorklof at hut.fi: Namingmuse]
+</A></li>
+	<LI>Next message: <A HREF="000014.html">[Namingmuse-devel] [magnus.bjorklof at hut.fi: Re: Namingmuse]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#13">[ date ]</a>
+              <a href="thread.html#13">[ thread ]</a>
+              <a href="subject.html#13">[ subject ]</a>
+              <a href="author.html#13">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">More information about the Namingmuse-devel
+mailing list</a><br>
+</body></html>

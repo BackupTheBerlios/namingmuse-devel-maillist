@@ -1,0 +1,93 @@
+From thauta at iki.fi  Mon Jun 13 02:20:34 2005
+From: thauta at iki.fi (Tomi Hautakoski)
+Date: Mon, 13 Jun 2005 03:20:34 +0300 (EEST)
+Subject: [Namingmuse-devel] compiling namingmuse-0.9.1-1emh.src.rpm
+Message-ID: <Pine.LNX.4.61.0506130315450.15483@tuomi.oulu.fi>
+
+Hello,
+
+I don't know if this is a FAQ (didn't find it) but I'm having problems 
+just to compile the .src.rpm:
+
+rpmbuild --rebuild namingmuse-0.9.1-1emh.src.rpm
+Installing namingmuse-0.9.1-1emh.src.rpm
+warning: user emh does not exist - using root
+warning: group emh does not exist - using root
+warning: user emh does not exist - using root
+warning: group emh does not exist - using root
+Executing(%prep): /bin/sh -e /var/tmp/rpm-tmp.86822
++ umask 022
++ cd /usr/src/redhat/BUILD
++ cd /usr/src/redhat/BUILD
++ rm -rf namingmuse-0.9.1
++ /bin/gzip -dc /usr/src/redhat/SOURCES/namingmuse-0.9.1.tar.gz
++ tar -xf -
++ STATUS=0
++ '[' 0 -ne 0 ']'
++ cd namingmuse-0.9.1
+++ /usr/bin/id -u
++ '[' 0 = 0 ']'
++ /bin/chown -Rhf root .
+++ /usr/bin/id -u
++ '[' 0 = 0 ']'
++ /bin/chgrp -Rhf root .
++ /bin/chmod -Rf a+rX,u+w,g-w,o-w .
++ exit 0
+Executing(%build): /bin/sh -e /var/tmp/rpm-tmp.86822
++ umask 022
++ cd /usr/src/redhat/BUILD
++ cd namingmuse-0.9.1
++ /usr/bin/make doc
+cat README.in > README
+./nmuse --doc >> README
+Traceback (most recent call last):
+   File "./nmuse", line 3, in ?
+     from namingmuse import client
+   File "./namingmuse/client.py", line 14, in ?
+     from optparse import OptionParser, OptionGroup, make_option
+ImportError: No module named optparse
+make: *** [doc] Error 1
+error: Bad exit status from /var/tmp/rpm-tmp.86822 (%build)
+
+python-taglib-1.3.3-1emh.i386.rpm and taglib-1.3.1 are installed. 
+Otherwise my system is an updated RH 9 (python-2.2.2-26). Any suggestions, 
+please? Am I missing some python module or what?
+
+Tomi Hautakoski
+thauta at iki.fi
+                        Inertia makes the world go round.
+
+
+From emh at kvarteret.no  Wed Jun 15 12:25:23 2005
+From: emh at kvarteret.no (Eivind Magnus Hvidevold)
+Date: Wed, 15 Jun 2005 12:25:23 +0200
+Subject: [Namingmuse-devel] compiling namingmuse-0.9.1-1emh.src.rpm
+In-Reply-To: <Pine.LNX.4.61.0506130315450.15483@tuomi.oulu.fi>
+References: <Pine.LNX.4.61.0506130315450.15483@tuomi.oulu.fi>
+Message-ID: <20050615102523.GA16971@wallach-ix>
+
+On Mon, Jun 13, 2005 at 03:20:34AM +0300, Tomi Hautakoski wrote:
+> Hello,
+> 
+> I don't know if this is a FAQ (didn't find it) but I'm having problems 
+> just to compile the .src.rpm:
+I don't think we have a FAQ.
+
+>     from namingmuse import client
+>   File "./namingmuse/client.py", line 14, in ?
+>     from optparse import OptionParser, OptionGroup, make_option
+> ImportError: No module named optparse
+> make: *** [doc] Error 1
+> error: Bad exit status from /var/tmp/rpm-tmp.86822 (%build)
+> 
+> python-taglib-1.3.3-1emh.i386.rpm and taglib-1.3.1 are installed. 
+> Otherwise my system is an updated RH 9 (python-2.2.2-26). Any suggestions, 
+> please? Am I missing some python module or what?
+Yes, you are missing the optparse module, which was included in python
+since version 2.3. You need at least python 2.3 to run namingmuse.
+I'll add a "requirements" section to the README file.
+
+-- 
+EMH
+
+

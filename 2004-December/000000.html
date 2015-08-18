@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Namingmuse-devel] Re: namingmuse search bugs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/namingmuse-devel/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:namingmuse-devel%40lists.berlios.de?Subject=Re%3A%20%5BNamingmuse-devel%5D%20Re%3A%20namingmuse%20search%20bugs&In-Reply-To=%3C20041214175318.GB11975%40wallach-ix%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000001.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Namingmuse-devel] Re: namingmuse search bugs</H1>
+    <B>Eivind Magnus Hvidevold</B> 
+    <A HREF="mailto:namingmuse-devel%40lists.berlios.de?Subject=Re%3A%20%5BNamingmuse-devel%5D%20Re%3A%20namingmuse%20search%20bugs&In-Reply-To=%3C20041214175318.GB11975%40wallach-ix%3E"
+       TITLE="[Namingmuse-devel] Re: namingmuse search bugs">emh at hvidevold.cjb.net
+       </A><BR>
+    <I>Tue Dec 14 19:12:28 CET 2004</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000001.html">[Namingmuse-devel] [Joakim Verona: namingmuse feedback]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#0">[ date ]</a>
+              <a href="thread.html#0">[ thread ]</a>
+              <a href="subject.html#0">[ subject ]</a>
+              <a href="author.html#0">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Dec 14, 2004 at 05:24:05PM +0100, Joakim Verona wrote:
+&gt;<i> Hello,
+</I>&gt;<i> 
+</I>&gt;<i> There appears to be several bugs in the namingmuse freetext search
+</I>&gt;<i> stuff.
+</I>&gt;<i> 
+</I>&gt;<i> - the filterBysongCount function fails because it gets the local
+</I>&gt;<i>   number of tracks wrong by one(at least for me)
+</I>It's been working fine for me, except for CDs that contained a data
+track (which obviously has not been ripped to an audio file). If that is
+not the case for your album, I need more info on it to figure out what's
+wrong. We can add an option to disable filterBySongCount until we figure
+out what's the deal. The function is very helpful for weeding out a lot
+of unwanted matches (when it's working correctly).
+
+&gt;<i> So i just commented out this, and found other bugs:
+</I>&gt;<i> 
+</I>&gt;<i> - this field should be in the query:             (&quot;allfields&quot;, &quot;NO&quot;),
+</I>&gt;<i> 
+</I>&gt;<i> -              (&quot;words&quot;, &quot; &quot;.join(searchwords)), 
+</I>&gt;<i> space rathern than plus.
+</I>True. It seems urlencode does the job of replacing space with plus.
+Fixed in cvs now.
+ 
+&gt;<i> still, with the above changes, some tracks are mysteriously dropped by
+</I>&gt;<i> the parser.
+</I>&gt;<i> 
+</I>&gt;<i> try for instance this query:
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="http://www.freedb.org/freedb_search.php?words=30+minutes+death&amp;allfields=NO&amp;fields=artist&amp;fields=title&amp;allcats=YES&amp;grouping=none">http://www.freedb.org/freedb_search.php?words=30+minutes+death&amp;allfields=NO&amp;fields=artist&amp;fields=title&amp;allcats=YES&amp;grouping=none</A>
+</I>&gt;<i> 
+</I>&gt;<i> and have a look at what searchfreedb.py returns for the same query.
+</I>&gt;<i> 
+</I>&gt;<i> at least for me it drops 2 entries, for some reason.
+</I>Try giving the flag --loose. Namingmuse is strict by default. The 2
+entries are dropped because they are missing year and/or genre. We
+should output a warning to say this and how many albums were
+invalidated.
+
+We now have a mailing list: <A HREF="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">namingmuse-devel at lists.berlios.de</A>
+
+-- 
+EMH
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000001.html">[Namingmuse-devel] [Joakim Verona: namingmuse feedback]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#0">[ date ]</a>
+              <a href="thread.html#0">[ thread ]</a>
+              <a href="subject.html#0">[ subject ]</a>
+              <a href="author.html#0">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/namingmuse-devel">More information about the Namingmuse-devel
+mailing list</a><br>
+</body></html>
